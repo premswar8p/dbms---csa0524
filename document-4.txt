@@ -1,0 +1,230 @@
+mysql> USE student_st;
+Database changed
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> select registrationnumber,studentname,dateofbirth from student_st;
++--------------------+-------------+-------------+
+| registrationnumber | studentname | dateofbirth |
++--------------------+-------------+-------------+
+|                  1 | prasanth    | 2014-01-20  |
+|                  3 | jackson     | 2014-01-20  |
++--------------------+-------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into student_st values(4,'kavya','f','2000.01.01',45856545,'mumbai',2645554);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select from student_st where genderofthestudent='f';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from student_st where genderofthestudent='f'' at line 1
+mysql> select genderofthestudent='f' from student_st;
++------------------------+
+| genderofthestudent='f' |
++------------------------+
+|                      0 |
+|                      0 |
+|                      1 |
++------------------------+
+3 rows in set (0.00 sec)
+
+mysql> select from faculty where genderofthestudent='f';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from faculty where genderofthestudent='f'' at line 1
+mysql> select registrationnumber,studentname,dateofbirth,mobilenumber where genderofthestudent='f' from student_st;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where genderofthestudent='f' from student_st' at line 1
+mysql> select genderofthestudent,count(genderofthestudent) from student_st;
++--------------------+---------------------------+
+| genderofthestudent | count(genderofthestudent) |
++--------------------+---------------------------+
+| m                  |                         3 |
++--------------------+---------------------------+
+1 row in set (0.01 sec)
+
+mysql> use student_st;
+Database changed
+mysql> desc student_st;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| registrationnumber | int(9)      | NO   | PRI | 0       |       |
+| studentname        | varchar(15) | YES  |     | NULL    |       |
+| genderofthestudent | char(1)     | YES  |     | NULL    |       |
+| dateofbirth        | date        | YES  |     | NULL    |       |
+| mobilenumber       | int(10)     | YES  |     | NULL    |       |
+| locationoftay      | varchar(15) | YES  |     | NULL    |       |
+| mobileno           | int(10)     | NO   |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> alter table student_st add coursenumber varchar(4);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc student_st;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| registrationnumber | int(9)      | NO   | PRI | 0       |       |
+| studentname        | varchar(15) | YES  |     | NULL    |       |
+| genderofthestudent | char(1)     | YES  |     | NULL    |       |
+| dateofbirth        | date        | YES  |     | NULL    |       |
+| mobilenumber       | int(10)     | YES  |     | NULL    |       |
+| locationoftay      | varchar(15) | YES  |     | NULL    |       |
+| mobileno           | int(10)     | NO   |     | NULL    |       |
+| coursenumber       | varchar(4)  | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> insert into student_st values(5,'haa','f','2001.01.02',154215,'chennai',2454654,'c001');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | NULL         |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | NULL         |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select *from student_st where genderofthestudent='f';
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |  2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |  2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from student_st where coursenumber='c001';
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |  2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into faculty values('f4','haa','m','1995.01.01','2013.01.01',3325454,'d2',26);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> select*from faculty where dateofjoin<'2014';
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+1 row in set, 1 warning (0.00 sec)
+
+mysql> use course
+Database changed
+mysql> select*from course;
++----------+-------------------+------------+----------------+------------+-----------+
+| courseno | coursedescription | coursetype | semesternumber | hallnumber | facultyno |
++----------+-------------------+------------+----------------+------------+-----------+
+| c1       | dbms              | c          | 2              | 5          | f1        |
++----------+-------------------+------------+----------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select*from course where hallnumber='0';
+Empty set (0.00 sec)
+
+mysql> use student_st;
+Database changed
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | NULL         |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | NULL         |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student_st where studentname like '%a';
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |  2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |  2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from student_st where studentname like 'ma';
+Empty set (0.00 sec)
+
+mysql> select*from student_st where studentname like '%a%';
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | NULL         |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | NULL         |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student_st where locationofstay like '%a%';
+ERROR 1054 (42S22): Unknown column 'locationofstay' in 'where clause'
+mysql> select*from student_st where locationoftay like '%a%';
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | NULL         |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select*from student_st where length(studentname)<'6';
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |  2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |  2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+----------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select*from student_st where studentname like '%th%';
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | NULL         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+1 row in set (0.00 sec)

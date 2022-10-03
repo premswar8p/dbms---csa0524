@@ -1,0 +1,353 @@
+mysql> USE student_st;
+Database changed
+mysql> desc student_st;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| registrationnumber | int(9)      | NO   | PRI | 0       |       |
+| studentname        | varchar(15) | YES  |     | NULL    |       |
+| genderofthestudent | char(1)     | YES  |     | NULL    |       |
+| dateofbirth        | date        | YES  |     | NULL    |       |
+| mobilenumber       | int(10)     | YES  |     | NULL    |       |
+| locationoftay      | varchar(15) | YES  |     | NULL    |       |
+| mobileno           | int(10)     | NO   |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> short*from student_st;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'short*from student_st' at line 1
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 |
+|                  2 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> desc faculty;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| facultyno       | varchar(4)  | NO   | PRI |         |       |
+| facultyname     | varchar(15) | YES  |     | NULL    |       |
+| genderoffaculty | char(1)     | YES  |     | NULL    |       |
+| dateofbirth     | date        | YES  |     | NULL    |       |
+| dateofjoin      | date        | YES  |     | NULL    |       |
+| mobilenumber    | int(10)     | YES  |     | NULL    |       |
+| deptno          | varchar(4)  | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> insert into faculty values('f1',kavya,'f','2003.12,12','2022.06.07',25656256,'d1');
+ERROR 1054 (42S22): Unknown column 'kavya' in 'field list'
+mysql> insert into faculty values('f1','kavya','f','2003.12,12','2022.06.07',25656256,'d1');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2003-12-12  | 2022-06-07 |     25656256 | d1     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into faculty values('f2','dp','m','1997.08.07','2021.03.04',5545154,'d2');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2003-12-12  | 2022-06-07 |     25656256 | d1     |
+| f2        | dp          | m               | 1997-08-07  | 2021-03-04 |      5545154 | d2     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> use department;
+Database changed
+mysql> desc department;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| departmentno   | varchar(4)  | NO   | PRI |         |       |
+| departmentname | varchar(15) | YES  |     | NULL    |       |
+| departmenthead | varchar(4)  | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into department('d1','dp','h1');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp','h1')' at line 1
+mysql> insert into department('d1','dp','abc');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp','abc')' at line 1
+mysql> insert into department('d1','dp','d4');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp','d4')' at line 1
+mysql> insert into department('d1','dp','devi');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp','devi')' at line 1
+mysql> insert into department('d1','dp','f1');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp','f1')' at line 1
+mysql> insert into department('d1','dp','f1');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp','f1')' at line 1
+mysql> use course;
+Database changed
+mysql> desc course;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| courseno          | varchar(4)  | NO   | PRI |         |       |
+| coursedescription | varchar(14) | YES  |     | NULL    |       |
+| coursetype        | char(1)     | YES  |     | NULL    |       |
+| semesternumber    | char(1)     | YES  |     | NULL    |       |
+| hallnumber        | varchar(4)  | YES  |     | NULL    |       |
+| facultyno         | varchar(4)  | YES  |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.02 sec)
+
+mysql> insert into course values('c1','dbms','c',2,5,'f1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from course;
++----------+-------------------+------------+----------------+------------+-----------+
+| courseno | coursedescription | coursetype | semesternumber | hallnumber | facultyno |
++----------+-------------------+------------+----------------+------------+-----------+
+| c1       | dbms              | c          | 2              | 5          | f1        |
++----------+-------------------+------------+----------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into department('d1','dp',d_'devi');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp',d_'devi')' at line 1
+mysql> insert into department('d1','dp',d'd_devi');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp',d'd_devi')' at line 1
+mysql> insert into department('d1','dp','d_devi');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''d1','dp','d_devi')' at line 1
+mysql> selest*from studen_st;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'selest*from studen_st' at line 1
+mysql> use student-st;
+ERROR 1049 (42000): Unknown database 'student-st'
+mysql> use student_st;
+Database changed
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 |
+|                  2 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update student_st set registrationnumber=3 where name='jackson';
+ERROR 1054 (42S22): Unknown column 'name' in 'where clause'
+mysql> update student_st set registrationnumber=3 where studentname='jackson';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> use department;
+Database changed
+mysql> desc department;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| departmentno   | varchar(4)  | NO   | PRI |         |       |
+| departmentname | varchar(15) | YES  |     | NULL    |       |
+| departmenthead | varchar(4)  | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into department values('d1','dbms','devi');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from department;
++--------------+----------------+----------------+
+| departmentno | departmentname | departmenthead |
++--------------+----------------+----------------+
+| d1           | dbms           | devi           |
++--------------+----------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> select*faculty;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'faculty' at line 1
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2003-12-12  | 2022-06-07 |     25656256 | d1     |
+| f2        | dp          | m               | 1997-08-07  | 2021-03-04 |      5545154 | d2     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> delete from faculty where facultyno=f2;
+ERROR 1054 (42S22): Unknown column 'f2' in 'where clause'
+mysql> delete from faculty where dateofbirth = 1997.08.07;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.07' at line 1
+mysql> delete from faculty set facultyno='f3' where facultyname='kavya';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'set facultyno='f3' where facultyname='kavya'' at line 1
+mysql> delete from faculty where facultyno='f2';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2003-12-12  | 2022-06-07 |     25656256 | d1     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+1 row in set (0.00 sec)
+
+mysql> update faculty set dateofbirth = '2004.04.01' where facultyno='f1';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into faculty values('f3','jackson','m','1950.01.01','1970.01.01',225455454,'d3');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     |
+| f3        | jackson     | m               | 1950-01-01  | 1970-01-01 |    225455454 | d3     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> delete from faculty where dateofbirth>65='f3';
+Query OK, 0 rows affected, 2 warnings (0.00 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     |
+| f3        | jackson     | m               | 1950-01-01  | 1970-01-01 |    225455454 | d3     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> delete from faculty where dateofbirth='f3';
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     |
+| f3        | jackson     | m               | 1950-01-01  | 1970-01-01 |    225455454 | d3     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+2 rows in set (0.00 sec)
+
+mysql> delete from faculty where dateofbirth='1950.01.01';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+
+1 row in set (0.00 sec)
+
+mysql> alter table faculty add age int(2);
+Query OK, 1 row affected (0.03 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| facultyno       | varchar(4)  | NO   | PRI |         |       |
+| facultyname     | varchar(15) | YES  |     | NULL    |       |
+| genderoffaculty | char(1)     | YES  |     | NULL    |       |
+| dateofbirth     | date        | YES  |     | NULL    |       |
+| dateofjoin      | date        | YES  |     | NULL    |       |
+| mobilenumber    | int(10)     | YES  |     | NULL    |       |
+| deptno          | varchar(4)  | YES  |     | NULL    |       |
+| age             | int(2)      | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into faculty values('f4','jack','m','1960.01.01','1980.01.01',56462111,'d3',70);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT*from faculty
+    -> ;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |
+| f4        | jack        | m               | 1960-01-01  | 1980-01-01 |     56462111 | d3     |   70 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> delete from faculty where age>'65';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> select*from student_st;
+ERROR 1146 (42S02): Table 'faculty.student_st' doesn't exist
+mysql> use student_st;
+Database changed
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> use deprtment;
+ERROR 1049 (42000): Unknown database 'deprtment'
+mysql> use department;
+Database changed
+mysql> select*from department;
++--------------+----------------+----------------+
+| departmentno | departmentname | departmenthead |
++--------------+----------------+----------------+
+| d1           | dbms           | devi           |
++--------------+----------------+----------------+
+1 row in set (0.00 sec)
+
+mysql> use course;
+Database changed
+mysql> select*from course;
++----------+-------------------+------------+----------------+------------+-----------+
+| courseno | coursedescription | coursetype | semesternumber | hallnumber | facultyno |
++----------+-------------------+------------+----------------+------------+-----------+
+| c1       | dbms              | c          | 2              | 5          | f1        |
++----------+-------------------+------------+----------------+------------+-----------+
+1 row in set (0.00 sec)

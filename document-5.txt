@@ -1,0 +1,281 @@
+mysql> USE course;
+Database changed
+mysql> select*from course;
++----------+-------------------+------------+----------------+------------+-----------+
+| courseno | coursedescription | coursetype | semesternumber | hallnumber | facultyno |
++----------+-------------------+------------+----------------+------------+-----------+
+| c1       | dbms              | c          | 2              | 5          | f1        |
++----------+-------------------+------------+----------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> select*from course where coursedescription='ds';
+Empty set (0.00 sec)
+
+mysql> select*from course where coursedescription='dbms';
++----------+-------------------+------------+----------------+------------+-----------+
+| courseno | coursedescription | coursetype | semesternumber | hallnumber | facultyno |
++----------+-------------------+------------+----------------+------------+-----------+
+| c1       | dbms              | c          | 2              | 5          | f1        |
++----------+-------------------+------------+----------------+------------+-----------+
+1 row in set (0.00 sec)
+
+mysql> use student_st;
+Database changed
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | NULL         |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | NULL         |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | NULL         |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | c001         |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update student_st set couesenumber='70';
+ERROR 1054 (42S22): Unknown column 'couesenumber' in 'field list'
+mysql> update student_st set coursenumber='70';
+Query OK, 4 rows affected (0.00 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | 70           |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | 70           |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | 70           |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | 70           |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> update student_st set coursenumber='40' where registrationnumber='1';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | 40           |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | 70           |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | 70           |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | 70           |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> select*from student_st where coursenumber='50 to 80';
+Empty set (0.00 sec)
+
+mysql> select*from student_st where coursenumber='between50to80';
+Empty set (0.00 sec)
+
+mysql> select*from student_st where coursenumber score between 50 and 80;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'score between 50 and 80' at line 1
+mysql> select coursenumber from student_st wherer score between 50 and 80;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'score between 50 and 80' at line 1
+mysql> select*from student_st where coursenumber'<50and>80';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''<50and>80'' at line 1
+mysql> select*from student_st where coursenumber'<50';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''<50'' at line 1
+mysql> select*from student_st where coursenumber='<50';
+Empty set (0.00 sec)
+
+mysql> select*from student_st where coursenumber='40';
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | 40           |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+1 row in set (0.00 sec)
+
+mysql> select*from student_st where coursenumber<'40'and >'80';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '>'80'' at line 1
+mysql> select*from student_st where coursenumber<'40';
+Empty set (0.00 sec)
+
+mysql> select studentname from student_st where coursenumber>50;
++-------------+
+| studentname |
++-------------+
+| jackson     |
+| kavya       |
+| haa         |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> select studentname from student_st where coursenumberbetween50 to 80;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'to 80' at line 1
+mysql> select studentname from student_st where coursenumberbetween50to80;
+ERROR 1054 (42S22): Unknown column 'coursenumberbetween50to80' in 'where clause'
+mysql> select studentname from student_st where coursenumber between 50to80;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> select studentname from student_st where coursenumber>50;
++-------------+
+| studentname |
++-------------+
+| jackson     |
+| kavya       |
+| haa         |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> select courseno,studentname from student_st where genderofthestudent='m';
+ERROR 1054 (42S22): Unknown column 'courseno' in 'field list'
+mysql> select coursenumber,studentname from student_st where genderofthestudent='m';
++--------------+-------------+
+| coursenumber | studentname |
++--------------+-------------+
+| 40           | prasanth    |
+| 70           | jackson     |
++--------------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+2 rows in set (0.01 sec)
+
+mysql> select facultyname,genderoffaculty from faculty where deptno='d1';
++-------------+-----------------+
+| facultyname | genderoffaculty |
++-------------+-----------------+
+| kavya       | f               |
++-------------+-----------------+
+1 row in set (0.00 sec)
+
+mysql> use department;
+Database changed
+mysql> select*from department;
++--------------+----------------+----------------+
+| departmentno | departmentname | departmenthead |
++--------------+----------------+----------------+
+| d1           | dbms           | devi           |
++--------------+----------------+----------------+
+1 row in set (0.01 sec)
+
+mysql> alter table department add nooffaculties;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table department add nooffaculties int(3);
+Query OK, 1 row affected (0.00 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select*from department;
++--------------+----------------+----------------+---------------+
+| departmentno | departmentname | departmenthead | nooffaculties |
++--------------+----------------+----------------+---------------+
+| d1           | dbms           | devi           |          NULL |
++--------------+----------------+----------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> update department set nooffaculties=40 where departmentno='d1';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from department;
++--------------+----------------+----------------+---------------+
+| departmentno | departmentname | departmenthead | nooffaculties |
++--------------+----------------+----------------+---------------+
+| d1           | dbms           | devi           |            40 |
++--------------+----------------+----------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> select departmentname,nooffaculties from department group by departmentno='d1';
++----------------+---------------+
+| departmentname | nooffaculties |
++----------------+---------------+
+| dbms           |            40 |
++----------------+---------------+
+1 row in set (0.00 sec)
+
+mysql> create database studentt;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use studentt;
+Database changed
+mysql> create table studentt(id int(9),s_name varchar(15),courseno varchar(5),courseno varchar(10),minmark int(5),maxmark int(5),total int(5),avg int(5));
+ERROR 1060 (42S21): Duplicate column name 'courseno'
+mysql> create table studentt(id int(9),s_name varchar(15),courseno varchar(5),coursename varchar(10),minmark int(5),maxmark int(5),total int(5),avg int(5));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc studentt;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int(9)      | YES  |     | NULL    |       |
+| s_name     | varchar(15) | YES  |     | NULL    |       |
+| courseno   | varchar(5)  | YES  |     | NULL    |       |
+| coursename | varchar(10) | YES  |     | NULL    |       |
+| minmark    | int(5)      | YES  |     | NULL    |       |
+| maxmark    | int(5)      | YES  |     | NULL    |       |
+| total      | int(5)      | YES  |     | NULL    |       |
+| avg        | int(5)      | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into studentt values(1,'dp','c1','dbms',90,95,95,95);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  |
++------+--------+----------+------------+---------+---------+-------+------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |
++------+--------+----------+------------+---------+---------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> select sum from studentt where id='1';
+ERROR 1054 (42S22): Unknown column 'sum' in 'field list'
+mysql> select total from studentt where id='1';
++-------+
+| total |
++-------+
+|    95 |
++-------+
+1 row in set (0.00 sec)
+
+mysql> use department;
+Database changed
+mysql> use faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+
+2 rows in set (0.00 sec)
+
+mysql> alter table faculty add salary int(5);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into faculty values('f5','hee','m','1990.04.04','2010.04.04',45455554,'d3',40,100000);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  | salary |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |   NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |   NULL |
+| f5        | hee         | m               | 1990-04-04  | 2010-04-04 |     45455554 | d3     |   40 | 100000 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select deptno,salary from faculty;
++--------+--------+
+| deptno | salary |
++--------+--------+
+| d1     |   NULL |
+| d2     |   NULL |
+| d3     | 100000 |
++--------+--------+
+3 rows in set (0.00 sec)
