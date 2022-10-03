@@ -1,0 +1,110 @@
+
+2) Create a table name FACULTY with following structure.
+mysql> create database faculty;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use faculty;
+Database changed
+mysql> create table faculty(facultyno varchar(4),facultyname varchar(15),genderoffaculty char(1),dateofbirth date,dateofjoin date,mobilenumber int(10));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc faculty
+    -> ;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| facultyno       | varchar(4)  | YES  |     | NULL    |       |
+| facultyname     | varchar(15) | YES  |     | NULL    |       |
+| genderoffaculty | char(1)     | YES  |     | NULL    |       |
+| dateofbirth     | date        | YES  |     | NULL    |       |
+| dateofjoin      | date        | YES  |     | NULL    |       |
+| mobilenumber    | int(10)     | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+3) Create a table name DEPARTMENT with following structure.
+mysql> create database department;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use department;
+Database changed
+mysql> create table department(departmentno varchar(4),departmentname varchar(15),departmenthead varchar(4));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc department;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| departmentno   | varchar(4)  | YES  |     | NULL    |       |
+| departmentname | varchar(15) | YES  |     | NULL    |       |
+| departmenthead | varchar(4)  | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+4) Create a table name COURSE with following structure.
+
+
+mysql> create database course;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use course;
+Database changed
+mysql> create table course(courseno varchar(4),coursedescription varchar(14),coursetype char(1),semesternumber char(1),hallnumber varchar(4),facultyno varchar(4));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> desc course;
++-------------------+-------------+------+-----+---------+-------+
+| Field             | Type        | Null | Key | Default | Extra |
++-------------------+-------------+------+-----+---------+-------+
+| courseno          | varchar(4)  | YES  |     | NULL    |       |
+| coursedescription | varchar(14) | YES  |     | NULL    |       |
+| coursetype        | char(1)     | YES  |     | NULL    |       |
+| semesternumber    | char(1)     | YES  |     | NULL    |       |
+| hallnumber        | varchar(4)  | YES  |     | NULL    |       |
+| facultyno         | varchar(4)  | YES  |     | NULL    |       |
++-------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+1) Create a table name STUDENT with following structure.
+mysql> create database student_st;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use student_st;
+Database changed
+mysql> create table student_st(registrationnumber int(9),studentname varchar(15),genderofthestudent char(1),dateofbirth date,mobilenumber int(10),locationoftay varchar(15));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student_st;
++--------------------+-------------+------+-----+---------+-------+
+| Field              | Type        | Null | Key | Default | Extra |
++--------------------+-------------+------+-----+---------+-------+
+| registrationnumber | int(9)      | YES  |     | NULL    |       |
+| studentname        | varchar(15) | YES  |     | NULL    |       |
+| genderofthestudent | char(1)     | YES  |     | NULL    |       |
+| dateofbirth        | date        | YES  |     | NULL    |       |
+| mobilenumber       | int(10)     | YES  |     | NULL    |       |
+| locationoftay      | varchar(15) | YES  |     | NULL    |       |
++--------------------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+5)	Modify the table FACULTY by adding a column name DeptNo of datatype VARCHAR(4)
+mysql> create table course(courseno varchar(3),coursedesc varchar(14),coursetype char(1),semno char(1),hallno varchar(4),facno varchar(4));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> ALTER TABLE faculty ADD deptno varchar(4);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc faculty;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| facultyno       | varchar(4)  | YES  |     | NULL    |       |
+| facultyname     | varchar(15) | YES  |     | NULL    |       |
+| genderoffaculty | char(1)     | YES  |     | NULL    |       |
+| dateofbirth     | date        | YES  |     | NULL    |       |
+| dateofjoin      | date        | YES  |     | NULL    |       |
+| mobilenumber    | int(10)     | YES  |     | NULL    |       |
+| deptno          | varchar(4)  | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
