@@ -1,0 +1,56 @@
+mysql> use studentt;
+Database changed
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered | assesment |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |         4 |
+|    2 | hee    | c2       | c          |      96 |      95 |     0 |    0 |                     20 |         4 |
+|    3 | she    | c3       | c++        |      96 |      95 |     0 |    0 |                   NULL |         1 |
+|    4 | hmm    | c4       | python     |       0 |       0 |     0 |    0 |                     30 |         5 |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+4 rows in set (0.00 sec)
+mysql> update studentt set courseno=10 where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentt set courseno=20 where id=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentt set courseno=30 where id=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select s_name,courseno from studentt;
++--------+----------+
+| s_name | courseno |
++--------+----------+
+| dp     | 10       |
+| hee    | 20       |
+| she    | 30       |
+| hmm    | c4       |
++--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> use faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  | salary |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |   NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |   NULL |
+| f5        | hee         | m               | 1990-04-04  | 2010-04-04 |     45455554 | d3     |   40 | 100000 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from faculty order by dateofjoin;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  | salary |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| f5        | hee         | m               | 1990-04-04  | 2010-04-04 |     45455554 | d3     |   40 | 100000 |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |   NULL |
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |   NULL |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+3 rows in set (0.01 sec)

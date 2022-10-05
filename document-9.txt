@@ -1,0 +1,77 @@
+mysql> USE faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  | salary |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |   NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |   NULL |
+| f5        | hee         | m               | 1990-04-04  | 2010-04-04 |     45455554 | d3     |   40 | 100000 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select department,name from faculty;
+ERROR 1054 (42S22): Unknown column 'department' in 'field list'
+mysql> select *from faculty where deptno;
+Empty set, 3 warnings (0.00 sec)
+
+mysql> select deptno from faculty;
++--------+
+| deptno |
++--------+
+| d1     |
+| d2     |
+| d3     |
++--------+
+mysql> use studentt;
+Database changed
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  |
++------+--------+----------+------------+---------+---------+-------+------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |
++------+--------+----------+------------+---------+---------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into studentt values(2,'hee','c2','c',0,0,0,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentt values(3,'she','c3','c++',0,0,0,0);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  |
++------+--------+----------+------------+---------+---------+-------+------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |
+|    2 | hee    | c2       | c          |       0 |       0 |     0 |    0 |
+|    3 | she    | c3       | c++        |       0 |       0 |     0 |    0 |
++------+--------+----------+------------+---------+---------+-------+------+
+3 rows in set (0.00 sec)
+mysql> select s_name,courseno from studentt where total=0;
++--------+----------+
+| s_name | courseno |
++--------+----------+
+| hee    | c2       |
+| she    | c3       |
++--------+----------+
+2 rows in set (0.00 sec)
+mysql> use faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  | salary |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |   NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |   NULL |
+| f5        | hee         | m               | 1990-04-04  | 2010-04-04 |     45455554 | d3     |   40 | 100000 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select deptno from faculty where facultyname='kavya';
++--------+
+| deptno |
++--------+
+| d1     |
++--------+
+1 row in set (0.00 sec)

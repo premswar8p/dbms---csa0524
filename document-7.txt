@@ -1,0 +1,126 @@
+mysql> USE studentt;
+Database changed
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |
+|    2 | hee    | c2       | c          |       0 |       0 |     0 |    0 |                     20 |
+|    3 | she    | c3       | c++        |       0 |       0 |     0 |    0 |                   NULL |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+3 rows in set (0.00 sec)
+
+mysql> update studentt set minmark=96,maxmark=95 where id=2;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentt set minmark=96,maxmark=95 where id=3;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |
+|    2 | hee    | c2       | c          |      96 |      95 |     0 |    0 |                     20 |
+|    3 | she    | c3       | c++        |      96 |      95 |     0 |    0 |                   NULL |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+3 rows in set (0.00 sec)
+mysql> select*from studentt where minmark>maxmark;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+|    2 | hee    | c2       | c          |      96 |      95 |     0 |    0 |                     20 |
+|    3 | she    | c3       | c++        |      96 |      95 |     0 |    0 |                   NULL |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table studentt add assesment int(5);
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc studentt;
++------------------------+-------------+------+-----+---------+-------+
+| Field                  | Type        | Null | Key | Default | Extra |
++------------------------+-------------+------+-----+---------+-------+
+| id                     | int(9)      | YES  |     | NULL    |       |
+| s_name                 | varchar(15) | YES  | MUL | NULL    |       |
+| courseno               | varchar(5)  | YES  |     | NULL    |       |
+| coursename             | varchar(10) | YES  |     | NULL    |       |
+| minmark                | int(5)      | YES  |     | NULL    |       |
+| maxmark                | int(5)      | YES  |     | NULL    |       |
+| total                  | int(5)      | YES  |     | NULL    |       |
+| avg                    | int(5)      | YES  |     | NULL    |       |
+| noofstudentsregistered | int(10)     | YES  |     | NULL    |       |
+| assesment              | int(5)      | YES  |     | NULL    |       |
++------------------------+-------------+------+-----+---------+-------+
+10 rows in set (0.01 sec)
+
+mysql> insert into studentt values(4,'hmm','c4','python',0,0,0,0,30,5);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered | assesment |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |      NULL |
+|    2 | hee    | c2       | c          |      96 |      95 |     0 |    0 |                     20 |      NULL |
+|    3 | she    | c3       | c++        |      96 |      95 |     0 |    0 |                   NULL |      NULL |
+|    4 | hmm    | c4       | python     |       0 |       0 |     0 |    0 |                     30 |         5 |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> update studentt set assesment=4 where id=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentt set assesment=4 where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered | assesment |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |         4 |
+|    2 | hee    | c2       | c          |      96 |      95 |     0 |    0 |                     20 |         4 |
+|    3 | she    | c3       | c++        |      96 |      95 |     0 |    0 |                   NULL |      NULL |
+|    4 | hmm    | c4       | python     |       0 |       0 |     0 |    0 |                     30 |         5 |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+4 rows in set (0.01 sec)
+
+mysql> update studentt set assesment=1 where id=3;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered | assesment |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |         4 |
+|    2 | hee    | c2       | c          |      96 |      95 |     0 |    0 |                     20 |         4 |
+|    3 | she    | c3       | c++        |      96 |      95 |     0 |    0 |                   NULL |         1 |
+|    4 | hmm    | c4       | python     |       0 |       0 |     0 |    0 |                     30 |         5 |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+4 rows in set (0.01 sec)
+
+mysql> select*from studentt where assesment>1;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered | assesment |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |         4 |
+|    2 | hee    | c2       | c          |      96 |      95 |     0 |    0 |                     20 |         4 |
+|    4 | hmm    | c4       | python     |       0 |       0 |     0 |    0 |                     30 |         5 |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql> select coursename,avg from studentt where assesment>avg;
++------------+------+
+| coursename | avg  |
++------------+------+
+| c          |    0 |
+| c++        |    0 |
+| python     |    0 |
++------------+------+
+3 rows in set (0.00 sec)

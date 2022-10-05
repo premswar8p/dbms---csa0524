@@ -1,0 +1,110 @@
+mysql> USE studentt;
+Database changed
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  |
++------+--------+----------+------------+---------+---------+-------+------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |
+|    2 | hee    | c2       | c          |       0 |       0 |     0 |    0 |
+|    3 | she    | c3       | c++        |       0 |       0 |     0 |    0 |
++------+--------+----------+------------+---------+---------+-------+------+
+3 rows in set (0.00 sec)
+
+mysql> alter table studentt add noofstudentsregistered int(10);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                   NULL |
+|    2 | hee    | c2       | c          |       0 |       0 |     0 |    0 |                   NULL |
+|    3 | she    | c3       | c++        |       0 |       0 |     0 |    0 |                   NULL |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+3 rows in set (0.00 sec)
+
+mysql> update studentt set noofstudentsregistered=10 where id=1;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update studentt set noofstudentsregistered=20 where id=2;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  | noofstudentsregistered |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |                     10 |
+|    2 | hee    | c2       | c          |       0 |       0 |     0 |    0 |                     20 |
+|    3 | she    | c3       | c++        |       0 |       0 |     0 |    0 |                   NULL |
++------+--------+----------+------------+---------+---------+-------+------+------------------------+
+3 rows in set (0.00 sec)
+mysql> select coursename,noofstudentsregistered from studentt;
++------------+------------------------+
+| coursename | noofstudentsregistered |
++------------+------------------------+
+| dbms       |                     10 |
+| c          |                     20 |
+| c++        |                   NULL |
++------------+------------------------+
+3 rows in set (0.00 sec)
+mysql> use student_st
+Database changed
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | 40           |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | 70           |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | 70           |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | 70           |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+4 rows in set (0.00 sec)
+mysql> insert into student_st values(2,'she','f','2000.02.02',2454554,'dubai',2484415,40);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from student_st;
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+| registrationnumber | studentname | genderofthestudent | dateofbirth | mobilenumber | locationoftay | mobileno  | coursenumber |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+|                  1 | prasanth    | m                  | 2014-01-20  |    939806746 | chennai       | 939806776 | 40           |
+|                  2 | she         | f                  | 2000-02-02  |      2454554 | dubai         |   2484415 | 40           |
+|                  3 | jackson     | m                  | 2014-01-20  |    655543215 | guntur        |  65455454 | 70           |
+|                  4 | kavya       | f                  | 2000-01-01  |     45856545 | mumbai        |   2645554 | 70           |
+|                  5 | haa         | f                  | 2001-01-02  |       154215 | chennai       |   2454654 | 70           |
++--------------------+-------------+--------------------+-------------+--------------+---------------+-----------+--------------+
+5 rows in set (0.00 sec)
+mysql> select studentname,genderofthestudent,mobileno from student_st order by registrationnumber;
++-------------+--------------------+-----------+
+| studentname | genderofthestudent | mobileno  |
++-------------+--------------------+-----------+
+| prasanth    | m                  | 939806776 |
+| she         | f                  |   2484415 |
+| jackson     | m                  |  65455454 |
+| kavya       | f                  |   2645554 |
+| haa         | f                  |   2454654 |
++-------------+--------------------+-----------+
+5 rows in set (0.00 sec)
+mysql> use faculty;
+Database changed
+mysql> select*from faculty;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  | salary |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |   NULL |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |   NULL |
+| f5        | hee         | m               | 1990-04-04  | 2010-04-04 |     45455554 | d3     |   40 | 100000 |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select*from faculty order by dateofbirth;
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| facultyno | facultyname | genderoffaculty | dateofbirth | dateofjoin | mobilenumber | deptno | age  | salary |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+| f5        | hee         | m               | 1990-04-04  | 2010-04-04 |     45455554 | d3     |   40 | 100000 |
+| f4        | haa         | m               | 1995-01-01  | 2013-01-01 |      3325454 | d2     |   26 |   NULL |
+| f1        | kavya       | f               | 2004-04-01  | 2022-06-07 |     25656256 | d1     | NULL |   NULL |
++-----------+-------------+-----------------+-------------+------------+--------------+--------+------+--------+
+3 rows in set (0.00 sec)
