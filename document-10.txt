@@ -1,0 +1,22 @@
+mysql> use studentt
+Database changed
+mysql> select*from studentt;
++------+--------+----------+------------+---------+---------+-------+------+
+| id   | s_name | courseno | coursename | minmark | maxmark | total | avg  |
++------+--------+----------+------------+---------+---------+-------+------+
+|    1 | dp     | c1       | dbms       |      90 |      95 |    95 |   95 |
++------+--------+----------+------------+---------+---------+-------+------+
+1 row in set (0.00 sec)
+
+mysql> create view studentt_view as id,s_name,avg,coursename from studentt;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'id,s_name,avg,coursename from studentt' at line 1
+mysql> create view studentt_view as select id,s_name,avg,coursename from studentt;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select*from studentt_view;
++------+--------+------+------------+
+| id   | s_name | avg  | coursename |
++------+--------+------+------------+
+|    1 | dp     |   95 | dbms       |
++------+--------+------+------------+
+1 row in set (0.00 sec)
